@@ -11,12 +11,13 @@ class HomeCell: UICollectionViewCell {
     
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var collection: UICollectionView!
-    
     private var movieItems = [MovieResult]()
     
     func configure(data: Category) {
         movieItems = data.items
         nameLabel.text = data.title
+        collection.showsHorizontalScrollIndicator = false
+
         collection.reloadData()
     }
 }

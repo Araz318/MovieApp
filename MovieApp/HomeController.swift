@@ -15,6 +15,10 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collection.showsVerticalScrollIndicator = false
+        
+
+
        
         title = "Movie"
         configViewModel()
