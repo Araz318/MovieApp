@@ -16,7 +16,7 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-
+        title = "Movie"
         configViewModel()
         configCollection()
     }
@@ -24,6 +24,8 @@ class HomeController: UIViewController {
     func configViewModel() {
         viewModel.getpopularMovies()
         viewModel.getTopRatedMovies()
+        viewModel.getTopUpcomingMovies()
+        viewModel.getTopNowPlayingMovies()
         viewModel.successCallback = {
             self.collection.reloadData()
         }
@@ -32,6 +34,7 @@ class HomeController: UIViewController {
     func configCollection() {
         
     }
+
 }
 
 extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

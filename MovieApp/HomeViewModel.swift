@@ -46,5 +46,33 @@ import Foundation
                 }
             }
         }
+        func getTopUpcomingMovies() {
+            NetworkManager.shared.request(model: Movie.self,
+                                          url: NetworkHelper.shared.urlConfig(path: "movie/upcoming")) { movieData, error in
+                if let error = error {
+                    print("")
+                } else if let movieData = movieData {
+                    self.category.append(Category(title: "Upcoming",
+                                                  items: movieData.results ?? []))
+                    self.successCallback?()
+                    
+                    
+                }
+            }
+        }
+        func getTopNowPlayingMovies() {
+            NetworkManager.shared.request(model: Movie.self,
+                                          url: NetworkHelper.shared.urlConfig(path: "movie/now_playing")) { movieData, error in
+                if let error = error {
+                    print("")
+                } else if let movieData = movieData {
+                    self.category.append(Category(title: "Now Playing",
+                                                  items: movieData.results ?? []))
+                    self.successCallback?()
+                    
+                    
+                }
+            }
+        }
     }
 
