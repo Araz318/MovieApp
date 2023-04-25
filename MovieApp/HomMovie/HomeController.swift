@@ -11,35 +11,54 @@ class HomeController: UIViewController {
     
     @IBOutlet weak var collection: UICollectionView!
     
+    @IBOutlet weak var ListButton: UIBarButtonItem!
+    
     var viewModel = HomeViewModel()
+    private let cellId = "\(TopImageBottomLabelCell.self)"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collection.showsVerticalScrollIndicator = false
-        
-
-
-       
         title = "Movie"
         configViewModel()
         configCollection()
+        
     }
     
     func configViewModel() {
-        viewModel.getpopularMovies()
-        viewModel.getTopRatedMovies()
-        viewModel.getTopUpcomingMovies()
-        viewModel.getTopNowPlayingMovies()
+        viewModel.getItems()
         viewModel.successCallback = {
             self.collection.reloadData()
         }
+        viewModel.errorCallback = { message in
+            self.showAlert(title: "Error", message: "Uyari", buttonText: "OKEY" )
+        }
+    }
+    func showAlert(title: String, message: String, buttonText: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: buttonText, style: .default, handler: nil)
+        alert.addAction(okAction)
+        
     }
     
     func configCollection() {
+    
+    }
+    @IBAction func listButtonTapped(_ sender: UIBarButtonItem) {
+        let tableViewController = UITableViewController(style: .plain)
+                let popoverController = tableViewController.popoverPresentationController
+                popoverController?.barButtonItem = ListButton
+                present(tableViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func searchButton(_ sender: UIBarButtonItem) {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchController")
+           self.navigationController?.pushViewController(viewController, animated: true)
         
     }
-
 }
+
+
 
 extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,5 +75,6 @@ extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 318)
+        
     }
 }

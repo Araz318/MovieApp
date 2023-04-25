@@ -19,7 +19,15 @@ struct Movie: Codable {
 }
 
 // MARK: - MovieResult
-struct MovieResult: Codable {
+struct MovieResult: Codable,TopImageBottomLabellCellProtocol {
+    var titletext: String {
+        title ??  ""
+    }
+    
+    var imageUrl: String {
+        posterPath ?? ""
+    }
+    
     let adult: Bool?
     let backdropPath: String?
     let genreIDS: [Int]?
