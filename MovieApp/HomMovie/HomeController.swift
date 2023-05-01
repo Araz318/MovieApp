@@ -11,6 +11,7 @@ class HomeController: UIViewController {
     
     @IBOutlet weak var collection: UICollectionView!
     
+    
     @IBOutlet weak var ListButton: UIBarButtonItem!
     
     var viewModel = HomeViewModel()
@@ -42,6 +43,7 @@ class HomeController: UIViewController {
     }
     
     func configCollection() {
+title = NSLocalizedString("home_title", comment: "")
     
     }
     @IBAction func listButtonTapped(_ sender: UIBarButtonItem) {
