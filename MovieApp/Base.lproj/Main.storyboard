@@ -156,7 +156,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hsj-q9-2uG">
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="k6A-hW-B9B">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="k6A-hW-B9B">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -173,7 +173,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="searchTextFieldAction:" destination="z3p-i4-g0H" eventType="editingDidEnd" id="rNv-ue-NG3"/>
+                                    <action selector="searchTextFieldAction:" destination="z3p-i4-g0H" eventType="editingChanged" id="S2M-7Q-5fN"/>
                                     <outlet property="delegate" destination="z3p-i4-g0H" id="LFZ-UQ-hLy"/>
                                 </connections>
                             </textField>
@@ -191,7 +191,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="searchIcon" destination="UKh-AK-q22" id="Ise-Q7-cYX"/>
                         <outlet property="searchTextField" destination="UKh-AK-q22" id="GlA-9r-i66"/>
                         <outlet property="searchcollection" destination="hsj-q9-2uG" id="c5y-iu-NdD"/>
                     </connections>
