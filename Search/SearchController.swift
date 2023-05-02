@@ -9,38 +9,31 @@ import UIKit
 
 class SearchController: UIViewController {
     @IBOutlet weak var searchcollection: UICollectionView!
-    
-    @IBOutlet weak var searchIcon: UITextField!
     @IBOutlet weak var searchTextField: UITextField!
+    
     var searchModel = SearchViewModel()
     private let cellId = "\(DetailCell.self)"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         configreUI()
+         
+        configreUI()
         configsearchModel()
-       
     }
+    
     func configsearchModel() {
-        searchModel.getSearch()
         searchModel.successCallback = {
             self.searchcollection.reloadData()
         }
     }
-    func configreUI () {
+    
+    func configreUI() {
         searchcollection.register(UINib(nibName: cellId, bundle: nil), forCellWithReuseIdentifier: cellId)
-        searchIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchIconTap)))
     }
-    @objc fileprivate func searchIconTap() {
-        searchTextField.becomeFirstResponder()
-    }
-    
-    
+        
     @IBAction func searchTextFieldAction(_ sender: Any) {
-       
         if !(searchTextField.text?.isEmpty ?? false) {
-            searchModel.search(text: searchTextField.text ?? "")
-            searchcollection.reloadData()
+            searchModel.getSearch(text: searchTextField.text ?? "")
         }
         
     }
@@ -57,7 +50,7 @@ extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width * 360 / 375, height: 120)
+        return CGSize(width: searchcollection.frame.width , height: 120)
     }
     
 //    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
